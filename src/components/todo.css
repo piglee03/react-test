@@ -1,0 +1,15 @@
+table {
+    width:100%;
+    word-break: break-all;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    border-bottom: 1px solid black;
+}
+.done {
+    text-decoration: line-through;
+}
+.delBtn{
+    width:20%;
+}
