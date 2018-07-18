@@ -4,24 +4,3 @@
   margin-left:15%;
   margin-right:15%;
 }
-.top {
-  color: white;
-  text-align: center;
-  background-color: lightblue;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 10px; 
-}
-
-input {
-  width: 80%;
-}
-.list {
-  text-align:  center;  
-  padding: 1rem;
-  background-color:whitesmoke;
-  margin-top:10px;
-}
