@@ -37,6 +37,7 @@ class TodoMain extends Component {
   }
   render() {
     const {list, Remove, Done} = this.props;
+    
     return (
       <div className="App">
         <div className="top"> 
