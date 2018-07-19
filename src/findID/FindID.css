@@ -1,0 +1,20 @@
+table {
+    width:100%;
+    word-break: break-all;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+    margin-top:1rem;
+}
+th, td {
+    border-bottom: 1px solid black;
+}
+
+input {
+    width: 80%;
+} 
+.result {
+    font-size: 1em;
+}
+.info {
+    width: 50%;
+}

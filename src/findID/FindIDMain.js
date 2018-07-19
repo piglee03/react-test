@@ -1,57 +1,63 @@
 import React, { Component } from 'react';
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-
+import axios from 'axios';
+import './FindID.css';
 class FindIDMain extends Component {
     state = {
-        id:""
+        text:"",
+        login:"",
+        name: "",
+        url:"",
+        email: null,
     }
     handleChange = (e) => {
+        const {value} = e.target;
+        this.setState({
+            ...this.state,
+            text: value
+        });
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            id: "piglee03"
-          });
+        axios.get(`https://api.github.com/users/${this.state.text}`)
+        .then(response => {
+            console.log(response.data);
+            this.setState({
+                text:"",
+                login:response.data.login,
+                name: response.data.name,
+                email:response.data.email,
+                url:response.data.url,
+
+            });
+        })
     }
     render() {
-        const queryFindID = gql`
-            query($query:String!){
-                search (query: $query, type: USER, first: 1){
-                edges {
-                    node {
-                    ... on User {
-                        login
-                        name
-                        email
-                        bio
-                        url
-                        company
-                        location
-                    }
-                    }
-                }
-                }
-            }
-            `;
-        
-
-        const resultQuery = (id) => (
-            <Query query={queryFindID} variables = {id}>
-                {({ loading, error, data }) => {
-                if (loading) return null;
-                if (error) return ` ${error}`;
-                return data;
-                }}
-            </Query>
-        );
         return (
             <div>
-                <form>
-                    <input name="text" placeholder="github ID" value = {this.state.id} onChange = {this.handleChange}/>
-                    <button type="submit" onClick={this.handleSubmit}> 추가 </button>
+                <form onSubmit={this.handleSubmit}>
+                    <input name="text" placeholder="github ID" value = {this.state.text} onChange = {this.handleChange}/>
+                    <button type="submit" > 추가 </button>
+                    <table className="result">
+                        <tbody>
+                            <tr>
+                                <th className="info">login</th>
+                                <th>{this.state.login}</th>
+                            </tr>
+                            <tr>
+                                <th className="info">name</th>
+                                <th>{this.state.name}</th>
+                            </tr>
+                            <tr>
+                                <th className="info">email</th>
+                                <th>{this.state.email}</th>
+                            </tr>
+                            <tr>
+                                <th className="info">url</th>
+                                <th>{this.state.url}</th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </form>
-                {resultQuery(this.id)}
                 
             </div>
         );

@@ -32,7 +32,6 @@ const mapStateToProps = (state) => {
     todolist: state.todolist
   };
 } 
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);
 }
